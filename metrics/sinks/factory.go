@@ -26,6 +26,7 @@ import (
 	"k8s.io/heapster/metrics/sinks/graphite"
 	"k8s.io/heapster/metrics/sinks/hawkular"
 	"k8s.io/heapster/metrics/sinks/influxdb"
+	"k8s.io/heapster/metrics/sinks/json"
 	"k8s.io/heapster/metrics/sinks/kafka"
 	"k8s.io/heapster/metrics/sinks/librato"
 	logsink "k8s.io/heapster/metrics/sinks/log"
@@ -53,6 +54,8 @@ func (this *SinkFactory) Build(uri flags.Uri) (core.DataSink, error) {
 		return hawkular.NewHawkularSink(&uri.Val)
 	case "influxdb":
 		return influxdb.CreateInfluxdbSink(&uri.Val)
+	case "json":
+		return json.NewJSONSink(), nil
 	case "kafka":
 		return kafka.NewKafkaSink(&uri.Val)
 	case "librato":
