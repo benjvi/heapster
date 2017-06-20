@@ -28,7 +28,7 @@ func TestSimpleWrite(t *testing.T) {
 			"m2": {
 				ValueType:  core.ValueFloat,
 				MetricType: core.MetricGauge,
-				FloatValue:   31.456,
+				FloatValue: 31.456,
 			},
 		},
 		LabeledMetrics: []core.LabeledMetric{
@@ -42,11 +42,10 @@ func TestSimpleWrite(t *testing.T) {
 				Labels: map[string]string{
 					"disk": "hard",
 				},
-
 			},
 		},
-		ScrapeTime:     now,
-		CreateTime:     now,
+		ScrapeTime: now,
+		CreateTime: now,
 	}
 	log, _ := batchToStringList(&batch)
 
@@ -71,8 +70,8 @@ func TestEmptyWrite(t *testing.T) {
 		MetricSets: make(map[string]*core.MetricSet),
 	}
 	batch.MetricSets["pod1"] = &core.MetricSet{
-		Labels: map[string]string{},
-		MetricValues: map[string]core.MetricValue{},
+		Labels:         map[string]string{},
+		MetricValues:   map[string]core.MetricValue{},
 		LabeledMetrics: []core.LabeledMetric{},
 		ScrapeTime:     now,
 		CreateTime:     now,

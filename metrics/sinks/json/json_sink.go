@@ -1,12 +1,11 @@
 package json
 
 import (
-
 	"encoding/json"
-	"k8s.io/heapster/metrics/core"
-	"strconv"
 	"fmt"
 	"github.com/golang/glog"
+	"k8s.io/heapster/metrics/core"
+	"strconv"
 )
 
 type JSONSink struct {
@@ -20,15 +19,14 @@ func (this *JSONSink) Stop() {
 	// Do nothing.
 }
 
-
 type MetricSet struct {
 	DataBatchTimestamp string
-	MetricSet      string
-	ScrapeTime     string
-	CreateTime     string
-	Labels         map[string]string
-	Metrics        map[string]Metric
-	LabeledMetrics map[string][]LabeledMetric
+	MetricSet          string
+	ScrapeTime         string
+	CreateTime         string
+	Labels             map[string]string
+	Metrics            map[string]Metric
+	LabeledMetrics     map[string][]LabeledMetric
 }
 
 type Metric struct {
@@ -36,8 +34,8 @@ type Metric struct {
 }
 
 type LabeledMetric struct {
-	Value string
-	Labels      map[string]string
+	Value  string
+	Labels map[string]string
 }
 
 func batchToStringList(batch *core.DataBatch) (result []string, err error) {
@@ -72,7 +70,7 @@ func batchToStringList(batch *core.DataBatch) (result []string, err error) {
 				}
 			}
 			if _, ok := outMs.Metrics[metricName]; ok {
-				glog.Error("Skipping duplicate metric: "+metricName+" with value: "+outMetric.Value+", existing value: "+outMs.Metrics[metricName].Value)
+				glog.Error("Skipping duplicate metric: " + metricName + " with value: " + outMetric.Value + ", existing value: " + outMs.Metrics[metricName].Value)
 			} else {
 				outMs.Metrics[metricName] = outMetric
 			}
